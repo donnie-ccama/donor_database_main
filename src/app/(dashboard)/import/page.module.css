@@ -1,0 +1,321 @@
+.content {
+    padding: var(--space-xl);
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+/* Steps */
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    background-color: var(--bg-tertiary);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    transition: all var(--transition-fast);
+}
+
+.step.active {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
+.step.completed {
+    background-color: var(--success-bg);
+    color: var(--success);
+}
+
+.stepNumber {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: currentColor;
+    color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.step.active .stepNumber,
+.step.completed .stepNumber {
+    background-color: var(--bg-primary);
+    color: var(--accent-primary);
+}
+
+.stepConnector {
+    width: 32px;
+    height: 2px;
+    background-color: var(--border-default);
+}
+
+/* Dropzone */
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-3xl);
+    border: 2px dashed var(--border-default);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-tertiary);
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.dropzone:hover {
+    border-color: var(--accent-primary);
+    background-color: var(--surface-hover);
+}
+
+.dropzoneIcon {
+    width: 48px;
+    height: 48px;
+    color: var(--text-muted);
+}
+
+.dropzone p {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.dropzone span {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.fileLabel {
+    cursor: pointer;
+}
+
+.fileInput {
+    display: none;
+}
+
+/* File Info */
+.fileInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Mapping Grid */
+.mappingGrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: var(--space-sm);
+}
+
+.mappingRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.csvColumn {
+    flex: 1;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.arrow {
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.select {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+/* Preview Table */
+.previewTable {
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+}
+
+.previewTable table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+}
+
+.previewTable th {
+    padding: var(--space-sm);
+    text-align: left;
+    background-color: var(--bg-tertiary);
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-default);
+    white-space: nowrap;
+}
+
+.previewTable td {
+    padding: var(--space-sm);
+    border-bottom: 1px solid var(--border-subtle);
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.moreRows {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    padding: var(--space-md);
+}
+
+/* Progress */
+.progressWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-2xl);
+}
+
+.progressBar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: var(--accent-primary);
+    transition: width 0.3s ease;
+}
+
+.progressText {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.progressStats {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+/* Complete */
+.completeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-2xl);
+    text-align: center;
+}
+
+.completeIcon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: var(--success-bg);
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.completeWrapper h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.errorNote {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--error);
+    font-size: 0.875rem;
+}
+
+.completeActions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.error {
+    padding: var(--space-md);
+    background-color: var(--error-bg);
+    border: 1px solid var(--error);
+    border-radius: var(--radius-md);
+    color: var(--error);
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content {
+        padding: var(--space-md);
+    }
+
+    .steps {
+        flex-wrap: wrap;
+    }
+
+    .stepConnector {
+        display: none;
+    }
+
+    .mappingRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .arrow {
+        display: none;
+    }
+}

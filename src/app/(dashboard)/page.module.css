@@ -1,0 +1,202 @@
+.content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+
+.statCard {
+    padding: var(--space-lg) !important;
+}
+
+.statHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.statIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statTitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.statChange {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.statChange.positive {
+    color: var(--success);
+}
+
+.statChange.negative {
+    color: var(--error);
+}
+
+.changeLabel {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Two Column Layout */
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+.viewAll {
+    font-size: 0.875rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+.viewAll:hover {
+    color: var(--accent-hover);
+}
+
+.emptyText {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* List Styles */
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.listItem:last-child {
+    border-bottom: none;
+}
+
+.listItemLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.rank {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    width: 24px;
+}
+
+.listItemName {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+a.listItemName:hover {
+    color: var(--accent-primary);
+}
+
+.listItemMeta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 2px;
+}
+
+.listItemAmount {
+    font-weight: 600;
+    color: var(--success);
+}
+
+/* Quick Actions */
+.quickActions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+}
+
+.quickAction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.quickAction:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.quickAction span {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quickActions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: var(--space-md);
+    }
+
+    .statsGrid,
+    .columns,
+    .quickActions {
+        grid-template-columns: 1fr;
+    }
+
+    .statValue {
+        font-size: 1.5rem;
+    }
+}

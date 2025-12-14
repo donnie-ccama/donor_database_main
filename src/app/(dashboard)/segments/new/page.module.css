@@ -1,0 +1,215 @@
+.content {
+    padding: var(--space-xl);
+    max-width: 800px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.error {
+    padding: var(--space-md);
+    background-color: var(--error-bg);
+    border: 1px solid var(--error);
+    border-radius: var(--radius-md);
+    color: var(--error);
+    font-size: 0.875rem;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.textarea {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-family: inherit;
+    resize: vertical;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+}
+
+/* Type Options */
+.typeOptions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+.typeOption {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-md);
+    background-color: var(--bg-tertiary);
+    border: 2px solid var(--border-default);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.typeOption:hover:not(:disabled) {
+    border-color: var(--border-strong);
+}
+
+.typeOption.active {
+    border-color: var(--accent-primary);
+    background-color: rgba(212, 165, 116, 0.1);
+}
+
+.typeOption:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.typeTitle {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.typeDesc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Donor List */
+.donorList {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: var(--space-md);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+}
+
+.donorItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color var(--transition-fast);
+}
+
+.donorItem:last-child {
+    border-bottom: none;
+}
+
+.donorItem:hover {
+    background-color: var(--surface-hover);
+}
+
+.donorItem.selected {
+    background-color: rgba(212, 165, 116, 0.1);
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.donorItem.selected .checkbox {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
+.donorInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.donorName {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.donorEmail {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.noDonors {
+    padding: var(--space-lg);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Selected List */
+.selectedList {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.selectedLabel {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-subtle);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content {
+        padding: var(--space-md);
+    }
+
+    .typeOptions {
+        grid-template-columns: 1fr;
+    }
+}

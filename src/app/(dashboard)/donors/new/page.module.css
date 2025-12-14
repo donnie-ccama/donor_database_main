@@ -1,0 +1,4 @@
+.content {
+    padding: var(--space-xl);
+    max-width: 900px;
+}
