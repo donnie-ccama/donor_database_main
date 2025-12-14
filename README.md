@@ -1,4 +1,4 @@
-# DonorCRM - Donor Management System
+# Citykid Donor CRM
 
 A modern, open-source Donor Management System (CRM) for nonprofits, built with Next.js 14 and Supabase.
 

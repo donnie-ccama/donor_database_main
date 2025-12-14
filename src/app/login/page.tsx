@@ -12,7 +12,7 @@ export default function LoginPage() {
             <div className={styles.card}>
                 <div className={styles.logo}>
                     <Heart className={styles.logoIcon} />
-                    <h1 className={styles.logoText}>DonorCRM</h1>
+                    <h1 className={styles.logoText}>Citykid Donor CRM</h1>
                 </div>
 
                 <p className={styles.subtitle}>Sign in to your account</p>

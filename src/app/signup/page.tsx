@@ -77,7 +77,7 @@ export default function SignupPage() {
                 <div className={styles.card}>
                     <div className={styles.logo}>
                         <Heart className={styles.logoIcon} />
-                        <h1 className={styles.logoText}>DonorCRM</h1>
+                        <h1 className={styles.logoText}>Citykid Donor CRM</h1>
                     </div>
 
                     <div className={styles.success}>
@@ -104,7 +104,7 @@ export default function SignupPage() {
             <div className={styles.card}>
                 <div className={styles.logo}>
                     <Heart className={styles.logoIcon} />
-                    <h1 className={styles.logoText}>DonorCRM</h1>
+                    <h1 className={styles.logoText}>Citykid Donor CRM</h1>
                 </div>
 
                 <p className={styles.subtitle}>Create your account</p>

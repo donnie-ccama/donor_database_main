@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DonorCRM - Donor Management System",
+  title: "Citykid Donor CRM",
   description: "A modern donor management CRM for nonprofits. Track donors, gifts, segments, and more.",
   keywords: ["donor management", "CRM", "nonprofit", "fundraising", "gifts"],
 };

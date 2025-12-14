@@ -37,7 +37,7 @@ export function Sidebar() {
         <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}>
             <div className={styles.logo}>
                 <Heart className={styles.logoIcon} />
-                {!collapsed && <span className={styles.logoText}>DonorCRM</span>}
+                {!collapsed && <span className={styles.logoText}>Citykid Donor CRM</span>}
             </div>
 
             <nav className={styles.nav}>
