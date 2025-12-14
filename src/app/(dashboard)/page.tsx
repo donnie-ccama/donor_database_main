@@ -134,144 +134,165 @@ function formatDate(dateStr: string) {
 }
 
 export default async function DashboardPage() {
-    const stats = await getDashboardStats()
+    try {
+        const stats = await getDashboardStats()
 
-    return (
-        <>
-            <Header title="Dashboard" subtitle="Welcome back! Here's an overview of your donor activity." />
+        return (
+            <>
+                <Header title="Dashboard" subtitle="Welcome back! Here's an overview of your donor activity." />
 
-            <div className={styles.content}>
-                {/* Stats Grid */}
-                <div className={styles.statsGrid}>
-                    <StatCard
-                        title="Total Donors"
-                        value={stats.totalDonors.toLocaleString()}
-                        change={12}
-                        changeLabel="vs last month"
-                        icon={<Users size={20} />}
-                    />
-                    <StatCard
-                        title="Active Donors"
-                        value={stats.activeDonors.toLocaleString()}
-                        change={8}
-                        changeLabel="vs last month"
-                        icon={<TrendingUp size={20} />}
-                    />
-                    <StatCard
-                        title="Total Donations"
-                        value={formatCurrency(stats.totalAmount)}
-                        change={23}
-                        changeLabel="vs last year"
-                        icon={<DollarSign size={20} />}
-                    />
-                    <StatCard
-                        title="Average Gift"
-                        value={formatCurrency(stats.avgGift)}
-                        change={-5}
-                        changeLabel="vs last month"
-                        icon={<Gift size={20} />}
-                    />
-                </div>
-
-                {/* Two Column Layout */}
-                <div className={styles.columns}>
-                    {/* Recent Gifts */}
-                    <Card>
-                        <CardHeader
-                            title="Recent Gifts"
-                            action={<Link href="/gifts" className={styles.viewAll}>View all</Link>}
+                <div className={styles.content}>
+                    {/* Stats Grid */}
+                    <div className={styles.statsGrid}>
+                        <StatCard
+                            title="Total Donors"
+                            value={stats.totalDonors.toLocaleString()}
+                            change={12}
+                            changeLabel="vs last month"
+                            icon={<Users size={20} />}
                         />
-                        <CardContent>
-                            {stats.recentGifts.length === 0 ? (
-                                <p className={styles.emptyText}>No gifts recorded yet.</p>
-                            ) : (
-                                <div className={styles.list}>
-                                    {stats.recentGifts.map((gift) => {
-                                        const donor = gift.donors as unknown as { id: string; full_name: string | null; first_name: string | null; last_name: string | null } | null
-                                        const donorName = donor?.full_name ||
-                                            `${donor?.first_name || ''} ${donor?.last_name || ''}`.trim() ||
-                                            'Anonymous'
+                        <StatCard
+                            title="Active Donors"
+                            value={stats.activeDonors.toLocaleString()}
+                            change={8}
+                            changeLabel="vs last month"
+                            icon={<TrendingUp size={20} />}
+                        />
+                        <StatCard
+                            title="Total Donations"
+                            value={formatCurrency(stats.totalAmount)}
+                            change={23}
+                            changeLabel="vs last year"
+                            icon={<DollarSign size={20} />}
+                        />
+                        <StatCard
+                            title="Average Gift"
+                            value={formatCurrency(stats.avgGift)}
+                            change={-5}
+                            changeLabel="vs last month"
+                            icon={<Gift size={20} />}
+                        />
+                    </div>
 
-                                        return (
-                                            <div key={gift.id} className={styles.listItem}>
-                                                <div className={styles.listItemLeft}>
-                                                    <span className={styles.listItemName}>{donorName}</span>
-                                                    <span className={styles.listItemMeta}>
-                                                        {formatDate(gift.given_at)}
-                                                        {gift.fund && ` · ${gift.fund}`}
+                    {/* Two Column Layout */}
+                    <div className={styles.columns}>
+                        {/* Recent Gifts */}
+                        <Card>
+                            <CardHeader
+                                title="Recent Gifts"
+                                action={<Link href="/gifts" className={styles.viewAll}>View all</Link>}
+                            />
+                            <CardContent>
+                                {stats.recentGifts.length === 0 ? (
+                                    <p className={styles.emptyText}>No gifts recorded yet.</p>
+                                ) : (
+                                    <div className={styles.list}>
+                                        {stats.recentGifts.map((gift) => {
+                                            const donor = gift.donors as unknown as { id: string; full_name: string | null; first_name: string | null; last_name: string | null } | null
+                                            const donorName = donor?.full_name ||
+                                                `${donor?.first_name || ''} ${donor?.last_name || ''}`.trim() ||
+                                                'Anonymous'
+
+                                            return (
+                                                <div key={gift.id} className={styles.listItem}>
+                                                    <div className={styles.listItemLeft}>
+                                                        <span className={styles.listItemName}>{donorName}</span>
+                                                        <span className={styles.listItemMeta}>
+                                                            {formatDate(gift.given_at)}
+                                                            {gift.fund && ` · ${gift.fund}`}
+                                                        </span>
+                                                    </div>
+                                                    <span className={styles.listItemAmount}>
+                                                        {formatCurrency(Number(gift.amount))}
                                                     </span>
                                                 </div>
-                                                <span className={styles.listItemAmount}>
-                                                    {formatCurrency(Number(gift.amount))}
-                                                </span>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            )}
-                        </CardContent>
-                    </Card>
+                                            )
+                                        })}
+                                    </div>
+                                )}
+                            </CardContent>
+                        </Card>
 
-                    {/* Top Donors */}
-                    <Card>
-                        <CardHeader
-                            title="Top Donors"
-                            subtitle="All-time giving leaders"
-                            action={<Link href="/donors" className={styles.viewAll}>View all</Link>}
-                        />
-                        <CardContent>
-                            {stats.topDonors.length === 0 ? (
-                                <p className={styles.emptyText}>No donor data available.</p>
-                            ) : (
-                                <div className={styles.list}>
-                                    {stats.topDonors.map((donor, index) => (
-                                        <div key={donor.id} className={styles.listItem}>
-                                            <div className={styles.listItemLeft}>
-                                                <span className={styles.rank}>#{index + 1}</span>
-                                                <Link href={`/donors/${donor.id}`} className={styles.listItemName}>
-                                                    {donor.name}
-                                                </Link>
+                        {/* Top Donors */}
+                        <Card>
+                            <CardHeader
+                                title="Top Donors"
+                                subtitle="All-time giving leaders"
+                                action={<Link href="/donors" className={styles.viewAll}>View all</Link>}
+                            />
+                            <CardContent>
+                                {stats.topDonors.length === 0 ? (
+                                    <p className={styles.emptyText}>No donor data available.</p>
+                                ) : (
+                                    <div className={styles.list}>
+                                        {stats.topDonors.map((donor, index) => (
+                                            <div key={donor.id} className={styles.listItem}>
+                                                <div className={styles.listItemLeft}>
+                                                    <span className={styles.rank}>#{index + 1}</span>
+                                                    <Link href={`/donors/${donor.id}`} className={styles.listItemName}>
+                                                        {donor.name}
+                                                    </Link>
+                                                </div>
+                                                <Badge variant="success">{formatCurrency(donor.total)}</Badge>
                                             </div>
-                                            <Badge variant="success">{formatCurrency(donor.total)}</Badge>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                                        ))}
+                                    </div>
+                                )}
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <Card>
+                        <CardHeader title="Quick Actions" />
+                        <CardContent>
+                            <div className={styles.quickActions}>
+                                <Link href="/donors/new" className={styles.quickAction}>
+                                    <Users size={24} />
+                                    <span>Add Donor</span>
+                                </Link>
+                                <Link href="/gifts/new" className={styles.quickAction}>
+                                    <Gift size={24} />
+                                    <span>Record Gift</span>
+                                </Link>
+                                <Link href="/import" className={styles.quickAction}>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="17 8 12 3 7 8" />
+                                        <line x1="12" y1="3" x2="12" y2="15" />
+                                    </svg>
+                                    <span>Import Data</span>
+                                </Link>
+                                <Link href="/segments/new" className={styles.quickAction}>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                                    </svg>
+                                    <span>Create Segment</span>
+                                </Link>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
-
-                {/* Quick Actions */}
+            </>
+        )
+    } catch (error: any) {
+        return (
+            <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
                 <Card>
-                    <CardHeader title="Quick Actions" />
+                    <CardHeader title="Dashboard Error" />
                     <CardContent>
-                        <div className={styles.quickActions}>
-                            <Link href="/donors/new" className={styles.quickAction}>
-                                <Users size={24} />
-                                <span>Add Donor</span>
-                            </Link>
-                            <Link href="/gifts/new" className={styles.quickAction}>
-                                <Gift size={24} />
-                                <span>Record Gift</span>
-                            </Link>
-                            <Link href="/import" className={styles.quickAction}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                    <polyline points="17 8 12 3 7 8" />
-                                    <line x1="12" y1="3" x2="12" y2="15" />
-                                </svg>
-                                <span>Import Data</span>
-                            </Link>
-                            <Link href="/segments/new" className={styles.quickAction}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-                                </svg>
-                                <span>Create Segment</span>
-                            </Link>
+                        <div style={{ color: 'var(--error)', padding: '1rem', background: 'rgba(255,0,0,0.1)', borderRadius: '8px' }}>
+                            <h3>Failed to load dashboard</h3>
+                            <p style={{ fontFamily: 'monospace', marginTop: '1rem' }}>
+                                {error?.message || 'Unknown error'}
+                            </p>
+                            <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                                If this is a "supabaseUrl is required" error, please check your Vercel Environment Variables.
+                            </p>
                         </div>
                     </CardContent>
                 </Card>
             </div>
-        </>
-    )
+        )
+    }
 }
