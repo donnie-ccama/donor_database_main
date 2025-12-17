@@ -4,10 +4,13 @@ import { Button, Badge } from '@/components/ui'
 import Link from 'next/link'
 import { Plus, Mail, Phone } from 'lucide-react'
 import styles from './page.module.css'
+import FilterBuilder from './filter-builder'
+import { buildDonorQuery } from '@/lib/donors-query'
 
 interface SearchParams {
     search?: string
     page?: string
+    filters?: string
 }
 
 async function getDonors(searchParams: SearchParams) {
@@ -16,18 +19,9 @@ async function getDonors(searchParams: SearchParams) {
     const perPage = 20
     const offset = (page - 1) * perPage
 
-    let query = supabase
-        .from('donors')
-        .select('*', { count: 'exact' })
-        .order('created_at', { ascending: false })
-        .range(offset, offset + perPage - 1)
+    let query = buildDonorQuery(supabase, searchParams.filters, searchParams.search)
 
-    if (searchParams.search) {
-        const search = `%${searchParams.search}%`
-        query = query.or(`full_name.ilike.${search},first_name.ilike.${search},last_name.ilike.${search},email.ilike.${search}`)
-    }
-
-    const { data, count } = await query
+    const { data, count } = await query.range(offset, offset + perPage - 1)
 
     return {
         donors: data || [],
@@ -54,6 +48,8 @@ export default async function DonorsPage({
             />
 
             <div className={styles.content}>
+                <FilterBuilder />
+
                 {/* Toolbar */}
                 <div className={styles.toolbar}>
                     <form className={styles.searchForm}>
