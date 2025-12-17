@@ -138,7 +138,7 @@ export default function FilterBuilder() {
                                 <option value="and">All (AND)</option>
                                 <option value="or">Any (OR)</option>
                             </select>
-                            <span>of the following rules:</span>
+                            <span>rules:</span>
                         </div>
                     </div>
 

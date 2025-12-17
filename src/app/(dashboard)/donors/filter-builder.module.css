@@ -45,6 +45,8 @@
     gap: var(--space-sm);
     color: var(--text-secondary);
     font-size: 0.875rem;
+    white-space: nowrap;
+    flex-wrap: nowrap;
 }
 
 .select {
