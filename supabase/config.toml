@@ -1,0 +1,14 @@
+project_id = "citykid-donor-crm"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "auth"]
+
+[db]
+port = 54322
+shadow_port = 54420
+
+[studio]
+enabled = true
+port = 54323
